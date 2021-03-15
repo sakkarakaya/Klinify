@@ -92,18 +92,25 @@ while True:
         Click_More = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(
                 (By.XPATH, f"/html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]/div[9]/div[{div_num}]/div/div[3]/div[3]/jsl/button"))
-        )                   # /html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]/div[9]/div[4]/div/div[3]/div[3]/jsl/button
-        # /html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]/div[9]/div[7]/div/div[3]/div[3]/jsl/button
+        )
         Click_More.click()
     except:
         print(" --- ")
     try:
+        Comment_Date = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH, f"/html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]/div[9]/div[{div_num}]/div/div[3]/div[3]/div[1]/span[3]"))
+        )
+        print(Comment_Date.text)
+    except:
+        print('Comment_Date could not be taken')
+    try:
         Komment = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(
                 (By.XPATH, f"/html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]/div[9]/div[{div_num}]/div/div[3]/div[3]/div[2]/span[2]"))
-        )                   # /html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]/div[9]/div[4]/div/div[3]/div[3]/div[2]/span[2]
-        print(Komment.text)
+        )
         Komment.append(Komment.text)
+        print(Komment.text)
     except:
         print('Comment could not be taken')
     div_num += 3
