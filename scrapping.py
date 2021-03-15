@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 
-driver = webdriver.Chrome("/Applications/chromedriver")
+driver = webdriver.Chrome("/Users/MEHMET/Downloads/chromedriver")
 driver.get("https://www.google.de/maps/@52.0845064,9.8930038,14z")
 driver.maximize_window()
 try:
@@ -21,6 +21,8 @@ except:
 
 Place = driver.find_element_by_class_name("tactile-searchbox-input")
 Place.send_keys("Augenklinik Dr.Hoffmann")
+
+
 
 sleep(5)
 try:
@@ -107,3 +109,6 @@ while True:
     except:
         print('Comment could not be taken')
     div_num += 3
+
+
+ 
