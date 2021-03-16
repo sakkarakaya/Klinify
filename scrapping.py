@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 
 driver = webdriver.Chrome("/Applications/chromedriver")
-driver.get("https://www.google.de/maps/")
+driver.get("https://www.google.com/maps/place/Augenklinik+Dr.+Hoffmann/@52.2555789,10.5275976,15z/data=!4m2!3m1!1s0x0:0xe66ee9e189648187?sa=X&ved=2ahUKEwiUrOzD5_DuAhVLDOwKHUVOACkQ_BIwDHoECBgQBQ")
 driver.maximize_window()
 try:
     WebDriverWait(driver, 10).until(
@@ -19,10 +19,10 @@ except:
     print('Quiting Point 1')
     driver.quit()
 
-Place = driver.find_element_by_class_name("tactile-searchbox-input")
-Place.send_keys("Augenklinik Dr.Hoffmann")
+'''Place = driver.find_element_by_class_name("tactile-searchbox-input")
+Place.send_keys("Augenklinik Dr.Hoffmann")'''
 
-sleep(3)
+'''sleep(3)
 try:
     Submit = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located(
@@ -32,9 +32,9 @@ try:
     Submit.click()
 except:
     print('Quiting Point 1')
-    driver.quit()
+    driver.quit()'''
 
-sleep(10)
+'''sleep(10)
 try:
     KHaus_Submit = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located(
@@ -45,7 +45,8 @@ except:
     print('Quiting Point 2')
     driver.quit()
 
-sleep(3)
+sleep(3)'''
+sleep(5)
 try:
     Adresse = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located(
@@ -103,9 +104,9 @@ while True:
             EC.presence_of_element_located(
                 (By.XPATH, f"/html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]/div[9]/div[{div_num}]/div/div[3]/div[3]/div[2]/span[2]"))
         )
-        Komment.append(Komment.text)
-
+        # Komment.append(Komment.text)
         print(Komment.text)
+        sleep(3)
         Comment_Date = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(
                 (By.XPATH, f"/html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]/div[9]/div[{div_num}]/div/div[3]/div[3]/div[1]/span[3]"))
