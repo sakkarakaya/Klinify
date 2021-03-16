@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 
 driver = webdriver.Chrome("/Applications/chromedriver")
-driver.get("https://www.google.de/maps/@52.0845064,9.8930038,14z")
+driver.get("https://www.google.de/maps/")
 driver.maximize_window()
 try:
     WebDriverWait(driver, 10).until(
@@ -22,11 +22,12 @@ except:
 Place = driver.find_element_by_class_name("tactile-searchbox-input")
 Place.send_keys("Augenklinik Dr.Hoffmann")
 
-sleep(5)
+sleep(3)
 try:
     Submit = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located(
             (By.XPATH, "/html/body/jsl/div[3]/div[9]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/button"))
+
     )
     Submit.click()
 except:
@@ -49,6 +50,7 @@ try:
     Adresse = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located(
             (By.XPATH, "/html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[8]/div[1]/button/div[1]/div[2]/div[1]"))
+
     )
     print(Adresse.text)
     Adresse = Adresse.text
@@ -97,6 +99,13 @@ while True:
     except:
         print(" --- ")
     try:
+        Komment = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH, f"/html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]/div[9]/div[{div_num}]/div/div[3]/div[3]/div[2]/span[2]"))
+        )
+        Komment.append(Komment.text)
+
+        print(Komment.text)
         Comment_Date = WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(
                 (By.XPATH, f"/html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]/div[9]/div[{div_num}]/div/div[3]/div[3]/div[1]/span[3]"))
@@ -104,13 +113,4 @@ while True:
         print(Comment_Date.text)
     except:
         print('Comment_Date could not be taken')
-    try:
-        Komment = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located(
-                (By.XPATH, f"/html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]/div[9]/div[{div_num}]/div/div[3]/div[3]/div[2]/span[2]"))
-        )
-        Komment.append(Komment.text)
-        print(Komment.text)
-    except:
-        print('Comment could not be taken')
     div_num += 3
