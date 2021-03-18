@@ -19,33 +19,6 @@ except:
     print('Quiting Point 1')
     driver.quit()
 
-'''Place = driver.find_element_by_class_name("tactile-searchbox-input")
-Place.send_keys("Augenklinik Dr.Hoffmann")'''
-
-'''sleep(3)
-try:
-    Submit = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located(
-            (By.XPATH, "/html/body/jsl/div[3]/div[9]/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/button"))
-
-    )
-    Submit.click()
-except:
-    print('Quiting Point 1')
-    driver.quit()'''
-
-'''sleep(10)
-try:
-    KHaus_Submit = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located(
-            (By.XPATH, "/html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[2]/div[1]/div[1]/div/a"))
-    )
-    KHaus_Submit.click()
-except:
-    print('Quiting Point 2')
-    driver.quit()
-
-sleep(3)'''
 sleep(5)
 try:
     Adresse = WebDriverWait(driver, 10).until(
@@ -56,7 +29,7 @@ try:
     print(Adresse.text)
     Adresse = Adresse.text
 except:
-    print('Quiting Point 3')
+    print('Quiting Point 2')
     driver.quit()
 
 sleep(3)
@@ -67,7 +40,7 @@ try:
     )
     Kommentare.click()
 except:
-    print('Quiting Point 4')
+    print('Quiting Point 3')
     driver.quit()
 
 sleep(3)
@@ -79,17 +52,31 @@ try:
     print(Sterne.text)
     Sterne = Sterne.text
 except:
-    print('Quiting Point 5')
+    print('Quiting Point 4')
     driver.quit()
 
 Komment = True
 div_num = 1
 Komment = []
-while True:
+'''for i in range(5):
     element = driver.find_element_by_xpath(
         "/html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]")
     ActionChains(driver).move_to_element(element).click(element).perform()
     # element.send_keys(Keys.PAGE_DOWN)
+    sleep(5)
+    print(f"{i} nci scroll")'''
+while True:
+    '''scroll_active_friends_list = WebDriverWait(driver, 40).until(EC.presence_of_element_located(
+                    (By.XPATH, '//*[@id="pane"]/div')))
+
+                scroll_active_friends_list.location_once_scrolled_into_view'''
+    scrollable_div = driver.find_element_by_css_selector(
+        'div.section-layout.section-scrollbox.scrollable-y.scrollable-show'
+    )
+    driver.execute_script(
+        'arguments[0].scrollTop = arguments[0].scrollHeight',
+        scrollable_div
+    )
     sleep(5)
     try:
         Click_More = WebDriverWait(driver, 10).until(
@@ -114,4 +101,8 @@ while True:
         print(Comment_Date.text)
     except:
         print('Comment_Date could not be taken')
+    sleep(3)
+    '''element = driver.find_element_by_xpath(
+                    "/html/body/jsl/div[3]/div[9]/div[8]/div/div[1]/div/div/div[3]")
+                ActionChains(driver).move_to_element(element).click(element).perform()'''
     div_num += 3
